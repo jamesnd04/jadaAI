@@ -5,17 +5,19 @@ import { Brain, FileStack, FileSearch, Scan, AlertCircle } from "lucide-react";
 export function Pill({
   status,
   icon,
+  isError,
   isDone,
 }: {
   status: string;
   icon: IndicatorIconType;
+  isError: boolean;
   isDone: boolean;
 }) {
   return (
     <div
       className={`flex flex-row gap-2 items-center ${
         isDone ? "text-gray-200" : "text-gray-400 animate-pulse"
-      }`}
+      } ${isError ? "text-red-500" : ""}`}
     >
       {icon === "thinking" && <Brain className="w-4 h-4 animate-pulse" />}
       {icon === "searching" && <FileSearch className="w-4 h-4 animate-pulse" />}
@@ -44,6 +46,7 @@ export default function Loading({
             key={indicator.status}
             status={indicator.status}
             icon={indicator.icon}
+            isError={indicator.icon === "error"}
             isDone={index !== indicatorState.length - 1}
           />
         );

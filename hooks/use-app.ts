@@ -13,6 +13,8 @@ import {
   StreamedMessage,
   streamedMessageSchema,
   Citation,
+  StreamedError,
+  streamedErrorSchema,
 } from "@/types";
 
 export default function useApp() {
@@ -108,6 +110,13 @@ export default function useApp() {
     ]);
   };
 
+  const handleStreamedError = (streamedError: StreamedError) => {
+    setIndicatorState((prevIndicatorState) => [
+      ...prevIndicatorState,
+      streamedError.indicator,
+    ]);
+  };
+
   const handleStreamedDone = (streamedDone: StreamedDone) => {};
 
   const routeResponseToProperHandler = (payload: string) => {
@@ -124,6 +133,8 @@ export default function useApp() {
         handleStreamedMessage(parsedPayload as StreamedMessage);
       } else if (streamedLoadingSchema.safeParse(parsedPayload).success) {
         handleStreamedLoading(parsedPayload as StreamedLoading);
+      } else if (streamedErrorSchema.safeParse(parsedPayload).success) {
+        handleStreamedError(parsedPayload as StreamedError);
       } else if (streamedDoneSchema.safeParse(parsedPayload).success) {
         handleStreamedDone(parsedPayload as StreamedDone);
       } else {
