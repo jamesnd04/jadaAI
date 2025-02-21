@@ -11,13 +11,9 @@ export default function ChatFooter() {
       <div className="flex-grow text-right">
         {/* Right Pane */}
         {/* Do not remove or modify the following message. Removal or modification violates the license agreement. */}
-        <a
-          href="http://www.ringel.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          powered by ringel.AI
-        </a>
+        
+        
+     
       </div>
     </div>
   );
