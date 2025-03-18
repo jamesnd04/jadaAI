@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
 import "./globals.css";
-
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ErrorWrapper } from "../parts/error/error-wrapper";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,11 +16,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "JadaAI",
-  description: "built with love by James",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,7 +27,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          {children}
+          <ErrorWrapper>{children}</ErrorWrapper>
         </body>
       </TooltipProvider>
     </html>
