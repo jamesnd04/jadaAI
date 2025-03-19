@@ -1,4 +1,5 @@
 import { ChatHistory } from "@/types/chat";
+import { motion } from "framer-motion";
 
 interface ChatMessagesProps {
   messages: ChatHistory;
@@ -24,7 +25,11 @@ const AssistantMessage = ({ message }: MessageProps) => (
 
 export function ChatMessages({ messages }: ChatMessagesProps) {
   return (
-    <div className="space-y-4 h-[80%] overflow-y-auto w-full px-4">
+    <motion.div
+      transition={{ ease: "easeInOut", duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      className="space-y-4 h-[80%] overflow-y-auto w-full px-4"
+    >
       {messages.map((message, index) =>
         message.role === "user" ? (
           <UserMessage key={index} message={message.message} />
@@ -32,6 +37,6 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
           <AssistantMessage key={index} message={message.message} />
         )
       )}
-    </div>
+    </motion.div>
   );
 }

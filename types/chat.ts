@@ -27,6 +27,6 @@ export const ChatHistorySchema = z.array(
 
 export type ChatHistory = z.infer<typeof ChatHistorySchema>;
 
-export const ChatIntentionSchema = z.enum(["happy", "hostile"]);
+export const ChatIntentionSchema = z.enum(["general", "idea"]);
 
 export type ChatIntention = z.infer<typeof ChatIntentionSchema>;
