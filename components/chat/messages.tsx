@@ -25,18 +25,24 @@ const AssistantMessage = ({ message }: MessageProps) => (
 
 export function ChatMessages({ messages }: ChatMessagesProps) {
   return (
-    <motion.div
-      transition={{ ease: "easeInOut", duration: 0.5 }}
-      whileHover={{ scale: 1.05 }}
-      className="space-y-4 h-[80%] overflow-y-auto w-full px-4"
-    >
+    <div className="space-y-4 h-[80%] overflow-y-auto w-full px-4">
       {messages.map((message, index) =>
         message.role === "user" ? (
-          <UserMessage key={index} message={message.message} />
+          <motion.div
+            transition={{ ease: "easeInOut", duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <UserMessage key={index} message={message.message} />
+          </motion.div>
         ) : (
-          <AssistantMessage key={index} message={message.message} />
+          <motion.div
+            transition={{ ease: "easeInOut", duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <AssistantMessage key={index} message={message.message} />
+          </motion.div>
         )
       )}
-    </motion.div>
+    </div>
   );
 }
