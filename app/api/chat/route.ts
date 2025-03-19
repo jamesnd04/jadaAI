@@ -2,17 +2,17 @@
 import {
   detectHarmfulUserIntention,
   detectMessageIntention,
-} from "@/modules/intention";
+} from "@/actions/intention";
 import {
   respondToGeneralMessage,
   createAnIdeaMessage,
   respondToHostileMessage,
-} from "@/modules/response";
+} from "@/actions/response";
 import {
   determineKeyPersonalFactors,
   generatePossibleAnswer,
   findPossibleAnswersInKnowledgeBase,
-} from "@/utilities/chat";
+} from "@/actions/chat";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { Pinecone } from "@pinecone-database/pinecone";

@@ -1,3 +1,4 @@
+"use server";
 import { OpenAI } from "openai";
 import { ChatHistory } from "@/types/chat";
 import { Pinecone } from "@pinecone-database/pinecone";

@@ -1,3 +1,4 @@
+"use server";
 import { UserMessage, ChatIntention, ChatIntentionSchema } from "@/types/chat";
 import { OpenAI } from "openai";
 import { zodResponseFormat } from "openai/helpers/zod";

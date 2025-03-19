@@ -2,9 +2,8 @@
 import Header from "@/components/chat/header";
 import ChatInput from "@/components/chat/input";
 import { ChatMessages } from "@/components/chat/messages";
-import { ChatHistory } from "@/types/chat";
+import { AssistantMessage, ChatHistory } from "@/types/chat";
 import { useState } from "react";
-import { sendMessage } from "@/utilities/chat";
 
 const sampleChatHistory: ChatHistory = [
   {
@@ -32,11 +31,21 @@ export default function Chat() {
   const [chatHistory, setChatHistory] =
     useState<ChatHistory>(sampleChatHistory);
 
-  function handleMessageSend(messages: ChatHistory): void {
+  async function handleMessageSend(
+    messages: ChatHistory
+  ): Promise<AssistantMessage | undefined> {
     setChatHistory(messages);
-    setIsLoading(true);
-
-    sendMessage(messages.slice(-5));
+    try {
+      setIsLoading(true);
+      const messageResponse = await fetch("/api/chat", {
+        method: "POST",
+        body: JSON.stringify({ messages }),
+      });
+      const botResponse = await messageResponse.json();
+      return botResponse;
+    } catch (error) {
+      console.error("Error:", error);
+    }
     setIsLoading(false);
   }
 
